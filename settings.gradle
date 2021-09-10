@@ -1,0 +1,2 @@
+rootProject.name = "Asteroid Radar"
+include ':app'

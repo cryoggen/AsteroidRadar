@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="asteroid"
+            type="com.cryoggen.asteroidradar.domain.Asteroid" />
+        <variable
+            name="asteroidCallback"
+            type="com.cryoggen.asteroidradar.main.AsteroidAdapter.OnClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/app_background"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/codename"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{asteroid.codename}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_codename"
+                app:layout_constraintEnd_toStartOf="@+id/asteroid_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2020-02-08" />
+
+            <TextView
+                android:id="@+id/close_approach_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{asteroid.closeApproachDate}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_close_approach_date"
+                app:layout_constraintEnd_toStartOf="@+id/asteroid_status"
+                app:layout_constraintStart_toStartOf="@+id/clickableOverlay"
+                app:layout_constraintTop_toBottomOf="@+id/codename"
+                tools:text="2020-02-08" />
+
+            <ImageView
+                android:id="@+id/asteroid_status"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:statusIcon="@{asteroid.isPotentiallyHazardous}"
+                tools:srcCompat="@drawable/ic_baseline_thumb_up_alt_24" />
+
+            <View
+                android:id="@+id/clickableOverlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{() -> asteroidCallback.onClick(asteroid)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
