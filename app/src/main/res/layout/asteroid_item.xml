@@ -23,7 +23,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> asteroidCallback.onClick(asteroid)}"
+            >
 
             <TextView
                 android:id="@+id/codename"
@@ -45,7 +47,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_close_approach_date"
                 app:layout_constraintEnd_toStartOf="@+id/asteroid_status"
-                app:layout_constraintStart_toStartOf="@+id/clickableOverlay"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/codename"
                 tools:text="2020-02-08" />
 
@@ -58,16 +60,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:statusIcon="@{asteroid.isPotentiallyHazardous}"
                 tools:srcCompat="@drawable/ic_baseline_thumb_up_alt_24" />
-
-            <View
-                android:id="@+id/clickableOverlay"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:onClick="@{() -> asteroidCallback.onClick(asteroid)}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
